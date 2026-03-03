@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <canvas id="matrix-bg"></canvas>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+
+  <div class="container">
+    <header>
+      <div class="terminal-bar">
+        <span class="terminal-dot red"></span>
+        <span class="terminal-dot yellow"></span>
+        <span class="terminal-dot green"></span>
+        <span class="terminal-title">root@stego:~</span>
+      </div>
+      <div class="logo-wrap">
+        <div class="skull-icon">&#9760;</div>
+        <h1>&gt;_ CODE STEGO</h1>
+      </div>
+      <p class="subtitle">[ENCRYPTED CODE SHARE // BASE62 ENCODING]</p>
+      <div class="status-line">
+        <span class="blink">&#9679;</span> SYSTEM ACTIVE <span class="separator">|</span> XOR-PBKDF2 <span class="separator">|</span> v2.0
+      </div>
+    </header>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="encode">&gt;&gt; ENCRYPT</button>
+      <button class="tab" data-tab="decode">&gt;&gt; DECRYPT</button>
+    </div>
+
+    <!-- ENCODE -->
+    <div id="encode" class="panel active">
+      <label for="secret-msg">&gt; secret_message <span class="cursor-blink">_</span></label>
+      <textarea id="secret-msg" placeholder="// gizli mesaji yaz..."></textarea>
+
+      <label for="password-enc">&gt; shared_key <span class="hint">[optional // recommended]</span></label>
+      <div class="password-row">
+        <input id="password-enc" type="password" placeholder="encryption_key...">
+        <button type="button" id="btn-toggle-pass-enc" class="btn-icon btn-icon-sm" title="Goster/Gizle">&#9673;</button>
+      </div>
+      <div class="info-box" id="info-no-pass">
+        <span class="info-icon">&#9888;</span> WARNING: No key = anyone with plugin can decrypt.
+      </div>
+
+      <button id="btn-encode" class="btn-primary">
+        <span class="btn-inner">&gt;&gt; ENCRYPT &amp; COPY</span>
+      </button>
+
+      <div id="encode-result" class="result hidden">
+        <label>&gt; encrypted_output</label>
+        <div class="result-box text-result" id="encoded-output"></div>
+        <span class="copied-badge hidden" id="copy-badge-enc">[ COPIED TO CLIPBOARD ]</span>
+        <div class="how-to-send">&gt; Paste into WhatsApp/Telegram. Receiver decrypts with same key.</div>
+      </div>
+    </div>
+
+    <!-- DECODE -->
+    <div id="decode" class="panel">
+      <div class="steps-guide">
+        <div class="step"><span class="step-num">01</span> COPY CODE</div>
+        <div class="step-arrow">&#9654;</div>
+        <div class="step"><span class="step-num">02</span> PASTE</div>
+        <div class="step-arrow">&#9654;</div>
+        <div class="step"><span class="step-num">03</span> DECRYPT</div>
+      </div>
+
+      <label for="stego-input">&gt; encrypted_code <span class="cursor-blink">_</span></label>
+      <div class="textarea-row">
+        <textarea id="stego-input" placeholder="// #STEGO-... kodunu yapistir..."></textarea>
+        <button type="button" id="btn-paste" class="btn-icon btn-paste" title="Panodan Yapistir">&#9112;</button>
+      </div>
+
+      <label for="password-dec">&gt; decryption_key <span class="hint">[if sender used one]</span></label>
+      <div class="password-row">
+        <input id="password-dec" type="password" placeholder="enter_key...">
+        <button type="button" id="btn-toggle-pass-dec" class="btn-icon btn-icon-sm" title="Goster/Gizle">&#9673;</button>
+      </div>
+
+      <button id="btn-decode" class="btn-primary">
+        <span class="btn-inner">&gt;&gt; DECRYPT CODE</span>
+      </button>
+
+      <div id="decode-result" class="result hidden">
+        <label>&gt; decrypted_message</label>
+        <div class="result-box text-result" id="decoded-output"></div>
+        <button id="btn-copy-decoded" class="btn-secondary">[ COPY ]</button>
+        <span class="copied-badge hidden" id="copy-badge-dec">[ COPIED ]</span>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-line"></div>
+      <p>&lt;/&gt; base62 encrypted code sharing // 2026</p>
+      <p class="credit">crafted by <span class="credit-name">zwennnnn</span></p>
+    </footer>
+  </div>
+
+  <script src="stego-core.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
